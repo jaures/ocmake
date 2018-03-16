@@ -5,7 +5,7 @@ from picamera import PiCamera
 
 # Set up PiCamera object
 piCam = PiCamera()
-piCam.resolution = (160,120)
+piCam.resolution = (160,128)
 piCam.framerate = 32
 
 rawCapture = PiRGBArray(piCam)
