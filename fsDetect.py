@@ -5,7 +5,7 @@ from picamera import PiCamera
 
 # Set up PiCamera object
 piCam = PiCamera()
-piCam.resolution = (160,128)
+piCam.resolution = (640,480)
 piCam.framerate = 32
 
 rawCapture = PiRGBArray(piCam)
@@ -19,7 +19,9 @@ smileCascade = cv2.CascadeClassifier("haarcascade_smile.xml")
 
 
 while True:
+
     # Take an image
+    rawCapture.truncate(0)
     piCam.capture(rawCapture, format="bgr")
     frame = rawCapture.array
 
