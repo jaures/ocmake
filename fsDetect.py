@@ -1,13 +1,28 @@
 import cv2
 from time import sleep
+from picamera.array import PiRGBArray
+from picamera import PiCamera
 
-vid_cap = cv2.VideoCapture(0);
+# Set up PiCamera object
+piCam = PiCamera()
+piCam.resolution = (160,120)
+piCam.framerate = 32
+
+rawCapture = PiRGBArray(piCam)
+
+# Allow for a small time delay to warm up  camera
+sleep(0.1)
+
+# Load the Haar Cascade files to recognize features
 faceCascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 smileCascade = cv2.CascadeClassifier("haarcascade_smile.xml")
 
 
 while True:
-    ret, frame = vid_cap.read()
+    # Take an image
+    piCam.capture(rawCapture, format="bgr")
+    frame = rawCapture.array
+
     grayed = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
     # Detect Faces
@@ -45,5 +60,5 @@ while True:
         break
 
 # When everything is done, release the capture
-vid_cap.release()
+piCam.close()
 cv2.destroyAllWindows()
