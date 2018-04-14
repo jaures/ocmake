@@ -14,7 +14,7 @@ toaddr = "your@email.com"
 
 
 # Take Screenshot
-os.sysetem("raspistill -o frame.jpg")
+os.system("raspistill -o frame.jpg")
 sleep(2);	
 
 # instance of MIMEMultipart
