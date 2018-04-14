@@ -92,7 +92,7 @@ $ pip install picamera
 ### Step 2:
 To install opencv run the following command
 ```
-$ pip instal opencv-python
+$ pip install opencv-python
 ```
 ### Step 3:
 Copy the project directory and then move into
